@@ -1,0 +1,95 @@
+common:
+  ip: 192.168.6.224
+
+# 聚类库地址
+facelibpath: E:/FaceProgram/dycluster
+
+# 服务启动的端口号
+server:
+  port: 9080
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://${common.ip}:3306/db_checkface?characterEncoding=utf8&useSSL=false
+      username: root
+      password: 123456
+      # 连接池的配置信息
+      initial-size: 5
+      max-active: 20
+      min-idle: 5
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1 FROM DUAL
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: false
+      test-on-borrow: false
+      test-on-return: false
+      filters: stat,wall,log4j
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      use-global-data-source-stat: true
+
+#pagehelper分页插件配置
+pagehelper:
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+  helper-dialect: mysql
+
+# 下划线到驼峰形式的映射
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.ferret.bean
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+
+
+#上传文件/图片的保存路径,替换url路径
+image:
+  prefix:
+    # 上传图片地址的路径目录前缀
+    uploadDir: D:/ftpdata/upload
+    # 替换成url路径的地址前缀
+    uploadUrl: http://${common.ip}:90/images
+    # tb_historypass表中图片保存的路径前缀
+    historyDir: //${common.ip}/ftpdata
+    # 替换成url地址路径的前缀
+    historyUrl: http://${common.ip}:90/images
+    # 布控图片保存的路径目录
+    bukongDir: D:/ftpdata/BK
+    # 布控图片替换成url的前缀
+    bukongUrl: http://${common.ip}:90/images
+    # 聚类目录
+    clusterDir: E:/FaceProgram
+    # 聚类url前缀
+    clusterUrl: http://${common.ip}:90/clusters
+
+socket:
+# 服务端通过tcp连接
+  tcp:
+    ip: ${common.ip}
+    port:
+      # 监控浏览端口
+      monitor: 6901
+      # 监控报警端口
+      alarm: 4233
+      #bukong: 9995
+    #心跳间隔,单位秒
+    heartbeat: 60
+# websocket通过http连接.
+  web:
+    url: /stomp
+    destination-prefix:
+      - /topic
+      - /user
+
+# webservice 请求访问路径.
+webservice:
+  # 提取特征服务请求地址
+  featureUrl: http://${common.ip}:8088/face/featureExt
+  # 动态查询请求地址
+  wsdlUrl: http://${common.ip}:80/DynaService.asmx?wsdl

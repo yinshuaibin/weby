@@ -1,0 +1,123 @@
+﻿﻿common:
+  ip: 127.0.0.1
+  index: 1
+
+facelibpath: E:\ftpdata\ClusterData\dycluster
+personArea: 410000
+server:
+  port: 8888
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://${common.ip}:3306/weby?characterEncoding=utf8&useSSL=false
+      username: root
+      password: CJ8AzTiVwZdJihNuyeYOeNpzeo1KndhRRlGr2wH5crWe9s4sYFbtGi5iUzva5l4YfBRqhz4zyGYv4miC8rjVww==
+      #连接池的配置信息
+      initial-size: 5
+      max-active: 20
+      min-idle: 5
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1 FROM DUAL
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: false
+      test-on-borrow: false
+      test-on-return: false
+      filter.config.enabled: true
+      filters: stat,wall,log4j
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALBCiB/HyM/WdejJ+3ZPHLATs+/2QyLxBi+3Qx/ftXmYb3O4U3MyVMkmXjYbd8MKYj7WwXXCVzv0j8qxj7ejvSsCAwEAAQ==
+      use-global-data-source-stat: true
+
+#pagehelper分页插件配置
+pagehelper:
+  #查询合理化,如果页数过大,默认查询最后一页
+  reasonable: false
+  #分页插件会从查询方法的参数值中，自动根据上面 params 配置的字段中取值，查找到合适的值时就会自动分页(禁止使用)
+  support-methods-arguments: false
+  #用于从对象中根据属性名取值
+  params: count=countSql
+  #数据库类型,可以不配置,插件默认检测
+  helper-dialect: mysql
+  
+# 下划线到驼峰形式的映射
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.ferret.bean
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+
+
+#上传文件/图片的保存路径,替换url路径
+image:
+  prefix:
+    # 1.上传图片地址的路径目录前缀
+    uploadDir: E:/ftpdata/upload
+    # 替换成url路径的地址前缀
+    uploadUrl: http://${common.ip}:${server.port}/upload
+    # 2.tb_historypass表中图片保存的路径前缀
+    historyDir: //${common.ip}/ftpdata
+    # 注意:这是头肩图IIS映射路径,同时也是头肩图图片放置目录
+    historyDir2: E:/ftpdata
+    # 替换成url地址路径的前缀(IP后为IIS映射的头肩图虚拟目录)
+    historyUrl: http://${common.ip}:8080/IMGDIR
+    # 背景图地址替换url路径前缀(IP后为IIS映射的背景图虚拟目录)
+    backGroundUrl: http://${common.ip}:8080/BAKIMGDIR
+    # 4.布控图片保存的路径目录
+    bukongDir: E:/ftpdata/BK
+    # 布控图片替换成url的前缀
+    bukongUrl: http://${common.ip}:${server.port}/bk
+    # 5.聚类目录
+    clusterDir: E:/TmFaceDyData
+    # 聚类url前缀
+    clusterUrl: http://${common.ip}:${server.port}/clusters
+    # 6.报警url前缀  (端口按照分布式图片保存路径修改)
+    alarmUrl: http://${common.ip}:8080/IMGDIR
+    # 报警目录 
+    alarmDir: E:/ftpdata
+    # 静态目录
+    staticDir: E:/ftpdata/searchImg
+    # 静态url前缀
+    staticUrl: http://${common.ip}:${server.port}/searchImg
+
+socket:
+# 服务端通过tcp连接
+  tcp:
+    ip: ${common.ip}
+    port:
+      # 监控浏览端口
+      monitor: 6901
+      # 监控报警端口
+      alarm: 4233
+      # bukong: 9995
+    #心跳间隔,单位秒
+    heartbeat: 60
+# websocket通过http连接.
+  web:
+    url: /stomp
+    destination-prefix:
+      - /topic
+      - /user
+#修改聚集点分析：每次选择一个布控分组，每个布控分组对象不能高于一定值(默认200)
+aggregationAnalyseNum: 200
+# webservice 请求访问路径.
+webservice:
+  # 提取特征服务请求地址
+  featureUrl: http://${common.ip}:8088/face/featureExt
+  featureUrlM: http://${common.ip}:8088/face/featureExtM
+  # 动态查询请求地址
+  wsdlUrl: http://${common.ip}:7080/DynaService.asmx?wsdl
+  #1:1分析请求路径
+  analysisUrl: http://${common.ip}:8088/face/compare
+  #档案检索分析请求路径
+  clusterDataUrl: http://${common.ip}:8088/face/clusterQry
+  
+#静态查询所需数据
+static:
+  #河南省厅常口静态接口
+  HNSTStatic: http://10.56.12.156:8077/searchStatic
+  #刑侦局前科静态接口
+  XZJStatic: http://10.57.86.194:8077/searchStatic
