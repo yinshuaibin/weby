@@ -4,16 +4,12 @@ package com.y.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.y.bean.User;
-import com.y.dao.UserDao;
-import com.y.exception.Yexception;
+import com.y.dao.UserMapper;
 import com.y.service.UserService;
 import com.y.utils.Md5Utils;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional
@@ -23,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    private UserDao userDao;
+    private UserMapper userDao;
 
     @Override
     public Page<User> getAllUser(Integer pageNum, Integer pageSize) {

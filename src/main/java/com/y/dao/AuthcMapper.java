@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AuthcDao {
+public interface AuthcMapper {
 
     @Select("select * from tb_authc where id in(select authc_id from tb_role_authc where role_id = #{roleId})")
     @Results({

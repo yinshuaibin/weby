@@ -114,10 +114,3 @@ webservice:
   analysisUrl: http://${common.ip}:8088/face/compare
   #档案检索分析请求路径
   clusterDataUrl: http://${common.ip}:8088/face/clusterQry
-  
-#静态查询所需数据
-static:
-  #河南省厅常口静态接口
-  HNSTStatic: http://10.56.12.156:8077/searchStatic
-  #刑侦局前科静态接口
-  XZJStatic: http://10.57.86.194:8077/searchStatic

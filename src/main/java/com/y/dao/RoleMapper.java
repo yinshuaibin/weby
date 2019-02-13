@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.Mapping;
 import java.util.List;
 
 @Repository
-public interface RoleDao {
+public interface RoleMapper {
 
     @Select("select * from tb_role where id in(select role_id from tb_user_role where user_id = #{userId})")
     @Results({
