@@ -8,5 +8,6 @@ import java.util.List;
 public class Role {
     private Integer roleId;
     private String roleName;
+    private String roleDesc;
     private List<Authc> authcs;
 }

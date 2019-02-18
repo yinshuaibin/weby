@@ -12,7 +12,7 @@ public interface UserMapper {
     @Select("select * from tb_user")
     @Results({
             @Result(column = "id",property = "userId"),
-            @Result(column = "id",property = "roles",many = @Many(select = "com.y.dao.RoleDao.getRoleByUserId"))
+            @Result(column = "id",property = "roles",many = @Many(select = "com.y.dao.RoleMapper.getRoleByUserId"))
     })
     List<User> getAllUser() ;
 

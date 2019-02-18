@@ -1,7 +1,12 @@
 package com.y.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.y.controller.UserController;
+import com.y.dao.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import sun.applet.Main;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -14,6 +19,9 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class TestServiceImpl {
 
     private LinkedBlockingDeque linkedBlockingDeque = new LinkedBlockingDeque(16);
+
+    @Autowired
+    private UserController userController;
 
     @PostConstruct
     public void init(){
@@ -40,11 +48,9 @@ public class TestServiceImpl {
 
         @Override
         public void run() {
-            try {
-                Object take = linkedBlockingDeque.take();
-                System.out.println(take);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            while(true){
+                Map allUser = userController.getAllUser(1, 100);
+                System.out.println(allUser);
             }
         }
     }

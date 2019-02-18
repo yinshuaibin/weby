@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <meta charset="UTF-8">
+    <title>做一个带比例尺的矩形图</title>
+</head>
+<body>
+<h1></h1>
+<script>
+    var width = 300;  //画布的宽度
+    var height = 300;   //画布的高度
+    var svg = d3.select("body")     //选择文档中的body元素
+        .append("svg")          //添加一个svg元素
+        .attr("width", width)       //设定宽度
+        .attr("height", height);    //设定高度
+
+    var dataset = [250,210,170,130,90] //数据 表示矩形的宽度
+
+
+    // 使用线性比例尺
+    var min = d3.min(dataset)  // 求数组最小值
+    var max = d3.max(dataset)  // 求数组最大值
+    var linear = d3.scale.linear()
+                 .domain([0,max]) // 相当于定义域
+                 .range([0,240]) // 相当于值域
+    // 该方法的返回值linear 是可以当做函数使用的
+
+    // 使用序数比例尺
+    var index = [0,5,2,3,4]
+    var color = ["red", "blue", "green", "yellow", "black"]
+    var ordinal = d3.scale.ordinal()
+        .domain(index)
+        .range(color)
+    // 该方法返回值同样是可以当做函数的,
+    var body = d3.select("body")
+    body.select("h1").text(linear(250)).style("color",ordinal(5))
+
+    var axis = d3.axisBottom()
+        .scale(linear) // 指定比例尺
+        .tacks(7) //指定刻度的数量
+
+    var  rectHeight = 25 // 坐标轴的高度
+
+    svg.append("g")
+        .attr("class","axis")
+        .attr("transform","translate(20,130)")
+        .call(axis)//添加分组元素
+
+    svg.selectAll("rect") // 选择画布中的所有rect
+    .data(dataset)
+    .enter()          // 指定选择集的enter部分
+    .append("rect")  // 矩形元素标签
+    .attr("x",20)   // 矩形左上角的x坐标
+    .attr("y",function (d,i) {   // 矩形的左上角的y坐标
+        return i*rectHeight
+    })
+    .attr("width",function (d) {   // 矩形宽度  此处使用了线性比例尺
+        return linear(d)
+    })
+    .attr("height",rectHeight-2)
+    .attr("fill",function (d) {
+        return ordinal(d)
+    })  // 为了我这样的彩笔理解直接将样式写到了元素里
+</script>
+<style>
+    .axis path,
+    .axis line{
+        fill: burlywood;
+        stroke: #482620;
+        shape-rendering: crispEdges;
+    }
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+</style>
+</body>
+</html>

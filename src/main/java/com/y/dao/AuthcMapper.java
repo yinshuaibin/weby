@@ -1,9 +1,7 @@
 package com.y.dao;
 
 import com.y.bean.Authc;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,15 +15,18 @@ public interface AuthcMapper {
     })
     List<Authc> getAuthcByRoleId(Integer roleId);
 
+    @Insert("insert into tb_authc (authc_name) values(#{authcName})")
     int insertAuthc(Authc authc);
 
+    @Delete("delete from tb_authc where id = #{id}")
     int delAuthc(int id);
 
+    @Update("update tb_authc set authc_name = #{authcName} where id = {#authcId})")
     int updateAuthc(Authc authc);
 
     @Select("select * from tb_authc)")
     @Results({
             @Result(column = "id",property = "authcId")
     })
-    List<Authc> getAllAuthc(Integer roleId);
+    List<Authc> getAllAuthc();
 }

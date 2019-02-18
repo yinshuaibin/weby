@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <meta charset="UTF-8">
+    <title>d3的测试页面</title>
+</head>
+<body>
+<h1>helloword</h1>
+<h1 id = "aaa">helloword</h1>
+<h1 class="myClass">helloword</h1>
+<h2></h2>
+<h2></h2>
+<h2></h2>
+<a></a>
+<script>
+    var body = d3.select("body");
+    body.append("h1").text("用append在末尾添加一个p标签");
+    var p = d3.select("body").select("#aaa");
+    p.text("我为id为aaa元素修改了名字")
+    p.style("color","red");
+    body.insert("h1","#aaa").text("这是在id为aaa的元素前添加的")
+    body.append("h1","#aaa").text("apped方法不允许这样使用,并不会在id为aaa的元素后添加,而是添加到了最后")
+    var dataset = ["one","two","three"]
+    // var allH2 = body.selectAll("h2")
+    // allH2.data(dataset).text(function (d,i) {
+    //     return d
+    // })
+    body.selectAll("p").data(dataset).enter().append("p").text(function (d) {
+        return d
+    })
+    // var p = body
+    //     .selectAll("p")
+    //     .data([4, 8, 15, 16, 23, 42])
+    //     .text(function(d) { return d; });
+    body.select(".myClass").remove();// 删除了对应的该元素数据
+</script>
+</body>
+</html>
