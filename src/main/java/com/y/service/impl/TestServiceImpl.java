@@ -28,7 +28,7 @@ public class TestServiceImpl {
         ExecutorService exec = Executors.newFixedThreadPool(3);
         long l = System.currentTimeMillis();
         for(int a=0; a<3; a++){
-            exec.execute(new aaaaaa());
+            //exec.execute(new aaaaaa());
         }
     }
     void offer(){
