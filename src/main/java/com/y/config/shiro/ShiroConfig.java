@@ -38,7 +38,7 @@ public class ShiroConfig  {
 		// 配置访问权限
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		filterChainDefinitionMap.put("/y/loginCheck", "anon");
-		filterChainDefinitionMap.put("/y/**", "authc");
+		//filterChainDefinitionMap.put("/y/**", "authc");
 		filterChainDefinitionMap.put("/**", "anon");
 		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return bean;

@@ -19,7 +19,14 @@ import java.util.concurrent.LinkedBlockingDeque;
 @Service
 public class TestServiceImpl {
 
-    private LinkedBlockingDeque linkedBlockingDeque = new LinkedBlockingDeque(16);
+    private static  final  LinkedBlockingDeque linkedBlockingDeque = new LinkedBlockingDeque(16);
+
+    public static void main(String[] args) throws InterruptedException {
+        Object take = linkedBlockingDeque.take();
+        System.out.println(11111);
+        System.out.println(take);
+        System.out.println(linkedBlockingDeque.size());
+    }
 
     @Autowired
     private UserController userController;
