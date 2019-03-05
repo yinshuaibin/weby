@@ -1,5 +1,7 @@
 package com.y.task.TaskController;
 
+import com.y.config.webSocket.bean.WebSocketMessage;
+import com.y.config.webSocket.utils.Consumer;
 import com.y.task.YTaskEngine;
 import com.y.task.YTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,12 @@ public class YTaskController {
         }
         // 添加到阻塞队列中
         YTaskEngine.addTask(taskY);
+        WebSocketMessage message = new WebSocketMessage();
+
+        // 下面3行为测试webSocket
+        message.setDestination("/user/1");
+        message.setData("ceshi");
+        Consumer.addMessage(message);
     }
 
 }
