@@ -23,6 +23,8 @@ public class YTaskEngine implements CommandLineRunner {
     @Autowired
     private UserService userService;
 
+    private YTaskCallBack yTaskCallBack;
+
     public static void addTask(TaskY task){
         tasks.offer(task);
     }
@@ -50,7 +52,12 @@ public class YTaskEngine implements CommandLineRunner {
                 task.execute();
                 Page<User> allUser = userService.getAllUser(1, 100);
                 System.out.println("该条语句仅为数据库查询操作,无意义"+allUser.getTotal()+"------------");
+                yTaskCallBack.finshCallBack();
             }
         }
+    }
+
+    public void setyTaskCallBack(YTaskCallBack taskCallBack){
+        this.yTaskCallBack = taskCallBack;
     }
 }
