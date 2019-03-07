@@ -2,6 +2,7 @@ package com.y.task.TaskController;
 
 import com.y.config.webSocket.bean.WebSocketMessage;
 import com.y.config.webSocket.utils.Consumer;
+import com.y.service.UserService;
 import com.y.task.YTaskEngine;
 import com.y.task.YTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class YTaskController {
 
-
-    /**
-     * 采用注入的方式
-     */
     @Autowired
-    private YTaskService taskY;
+    private UserService userService;
 
     /**
      * 模拟生成任务task
@@ -28,6 +25,7 @@ public class YTaskController {
             //此处重新设置值
         }
         // 添加到阻塞队列中
+        YTaskService taskY = new YTaskService(userService);
         YTaskEngine.addTask(taskY);
         WebSocketMessage message = new WebSocketMessage();
 

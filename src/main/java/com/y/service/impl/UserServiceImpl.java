@@ -4,6 +4,7 @@ package com.y.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.y.bean.User;
+import com.y.config.shiro.MyRealm;
 import com.y.dao.UserMapper;
 import com.y.service.UserService;
 import com.y.utils.Md5Utils;
@@ -14,9 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-
-
-
 
     @Autowired
     private UserMapper userDao;
@@ -39,7 +37,7 @@ public class UserServiceImpl implements UserService {
     public int insertUser(User user) {
         // 首先添加对应的角色
         // 将密码加密
-        user.setPassWord(Md5Utils.md5Encryption(Md5Utils.md5Encryption(user.getPassWord())));
+        user.setPassword(Md5Utils.md5Encryption(Md5Utils.md5Encryption(user.getPassword())));
         return userDao.insertUser(user);
     }
 
@@ -48,7 +46,7 @@ public class UserServiceImpl implements UserService {
         // 首先修改对应的角色
 
         // 将密码加密
-        user.setPassWord(Md5Utils.md5Encryption(Md5Utils.md5Encryption(user.getPassWord())));
+        user.setPassword(Md5Utils.md5Encryption(Md5Utils.md5Encryption(user.getPassword())));
         return userDao.updateUser(user);
     }
 
@@ -58,5 +56,10 @@ public class UserServiceImpl implements UserService {
 
         // 删除用户
         return userDao.deleteUser(id);
+    }
+
+    public static void main(String[] args) {
+        String s = Md5Utils.md5Encryption("1");
+        System.out.println(s);
     }
 }

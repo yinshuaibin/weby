@@ -10,10 +10,8 @@ import org.springframework.stereotype.Component;
 /**
  * 一个简单的任务接口实现类
  */
-@Component
 public class YTaskService implements TaskY {
 
-    @Autowired
     private UserService userService;
 
     @Override
@@ -23,12 +21,14 @@ public class YTaskService implements TaskY {
         return 0;
     }
 
+    public YTaskService(UserService userService){
+        this.userService = userService;
+    }
+
+
     @Override
     public String getTaskId() {
         return null;
     }
 
-    private void setParamIsNull(YTaskService yTaskService){
-
-    }
 }

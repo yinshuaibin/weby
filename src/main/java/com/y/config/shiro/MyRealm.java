@@ -5,6 +5,7 @@ import com.y.bean.Authc;
 import com.y.bean.Role;
 import com.y.bean.User;
 import com.y.service.UserService;
+import com.y.utils.Md5Utils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -20,8 +21,6 @@ public class MyRealm extends AuthorizingRealm {
 
 	@Autowired
 	private UserService userService;
-
-	private String salt = "666666";
 
 	// 授权
 	@Override
@@ -51,8 +50,8 @@ public class MyRealm extends AuthorizingRealm {
         }
 		return new SimpleAuthenticationInfo(
 		        user,
-                user.getPassWord(),
-                ByteSource.Util.bytes(user.getUserName()+salt),//username+password
+                user.getPassword(),
+                ByteSource.Util.bytes(Md5Utils.salt),//盐一般为username+salt 但此处直接使用
                 this.getClass().getName()// real name
         );
 	}

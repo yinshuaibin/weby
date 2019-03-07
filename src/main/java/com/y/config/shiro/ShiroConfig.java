@@ -2,6 +2,7 @@ package com.y.config.shiro;
 
 import java.util.LinkedHashMap;
 
+import com.y.utils.Md5Utils;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -34,21 +35,14 @@ public class ShiroConfig  {
 		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
 		bean.setSecurityManager(manager);
 		// 配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-		bean.setLoginUrl("/y/loginSuccess");
+		bean.setLoginUrl("/loginSuccess");
 		// 配置访问权限
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-		filterChainDefinitionMap.put("/y/loginCheck", "anon");
-		//filterChainDefinitionMap.put("/y/**", "authc");
+		filterChainDefinitionMap.put("/y/login", "anon");
+		filterChainDefinitionMap.put("/y/**", "authc");
 		filterChainDefinitionMap.put("/**", "anon");
 		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return bean;
-	}
-
-
-	//配置自定义的密码比较器
-	@Bean
-	public CredentialsMatcher credentialsMatcher() {
-		return new CredentialsMatcher();
 	}
 
 	/**
@@ -60,7 +54,7 @@ public class ShiroConfig  {
 	public HashedCredentialsMatcher hashedCredentialsMatcher() {
 		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
 		hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用MD5算法;
-		hashedCredentialsMatcher.setHashIterations(2);//散列2次
+		hashedCredentialsMatcher.setHashIterations(Md5Utils.hashiterations);//散列2次
 		return hashedCredentialsMatcher;
 	}
 
@@ -69,7 +63,6 @@ public class ShiroConfig  {
 	public MyRealm MyRealm() {
 		MyRealm myRealm = new MyRealm();
 		myRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-		//myRealm.setCredentialsMatcher(credentialsMatcher());
 		return myRealm;
 	}
 

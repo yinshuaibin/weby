@@ -6,8 +6,8 @@ import java.util.List;
 @Data
 public class User {
     private String userId;
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
     private String userDesc;
     private List<Role> roles;
 }

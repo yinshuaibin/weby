@@ -15,19 +15,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class LoginController extends BaseController {
+public class LoginController{
 
 
-    @RequestMapping("/login")
+    @RequestMapping("y/login")
     public Map<String,Object> login(@RequestBody User user){
         Map<String,Object> resultMap = new HashMap<>();
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(),user.getPassWord());
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(),user.getPassword());
         try {
             subject.login(token);
             resultMap.put("token", subject.getSession().getId());
             resultMap.put("msg", "登录成功");
         } catch (IncorrectCredentialsException e) {
+            e.printStackTrace();
             resultMap.put("msg", "密码错误");
         } catch (Yexception e) {
             resultMap.put("msg", "登录失败，这是个自定义异常");

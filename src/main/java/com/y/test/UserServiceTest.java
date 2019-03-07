@@ -20,6 +20,9 @@ public class UserServiceTest {
 
     @Test
     public void tes1(){
-
+        User u = new User();
+        u.setUsername("ss");
+        u.setPassword("1");
+        userService.insertUser(u);
     }
 }

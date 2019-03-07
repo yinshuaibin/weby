@@ -19,14 +19,14 @@ public interface UserMapper {
     @Select("select * from tb_user where user_name = #{userNmae}")
     @Results({
             @Result(column = "id",property = "userId"),
-            @Result(column = "id",property = "roles",many = @Many(select = "com.y.dao.RoleDao.getRoleByUserId"))
+            @Result(column = "id",property = "roles",many = @Many(select = "com.y.dao.RoleMapper.getRoleByUserId"))
     })
     User getUserByUserName(String userName) ;
 
-    @Insert("insert into tb_user (user_name, pass_word, user_desc) values(#{userName},#{passWord},#{userDesc})")
+    @Insert("insert into tb_user (user_name, pass_word, user_desc) values(#{username},#{password},#{userDesc})")
     int insertUser(User user);
 
-    @Update("update tb_user set user_name = #{userName} , pass_word = #{passWord}, user_desc = #{userDesc} where id = #{userId}")
+    @Update("update tb_user set user_name = #{username} , pass_word = #{password}, user_desc = #{userDesc} where id = #{userId}")
     int updateUser(User user);
 
     @Delete("delete from tb_user where id = #{userId}")

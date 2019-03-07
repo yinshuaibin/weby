@@ -20,7 +20,7 @@ public interface RoleMapper {
     @Select("select * from tb_role)")
     @Results({
             @Result(column = "id",property = "roleId"),
-            @Result(column = "id",property = "authcs",many = @Many(select = "com.y.dao.AuthcDao.getAuthcByRoleId"))
+            @Result(column = "id",property = "authcs",many = @Many(select = "com.y.dao.AuthcMapper.getAuthcByRoleId"))
     })
     List<Role> getAllRole();
 
