@@ -1,6 +1,7 @@
 package com.y.config.webSocket.interceptor;
 
 import com.y.bean.User;
+import com.y.exception.Yexception;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
@@ -25,8 +26,12 @@ public class WebSocketInterceptor implements HandshakeInterceptor {
             HttpSession session = request.getServletRequest().getSession();
             if (session != null){
                 //使用username区分WebSocketHandler，以便定向发送消息
-               // User user = (User) session.getAttribute("user");
-                attributes.put("user","123");
+                User user = (User) session.getAttribute("user");
+                if(user == null) {
+                    log.error("用户未登录却尝试连接websocket");
+                    return  false;
+                }
+                attributes.put("user",user);
                 return true;
             }else{
                 throw new RuntimeException("尚未登录错误!");
@@ -38,6 +43,6 @@ public class WebSocketInterceptor implements HandshakeInterceptor {
 
     @Override
     public void afterHandshake(ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse, WebSocketHandler webSocketHandler, Exception e) {
-        System.out.println("握手后");
+       log.info("握手后");
     }
 }

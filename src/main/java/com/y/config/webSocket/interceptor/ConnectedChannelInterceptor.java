@@ -29,8 +29,7 @@ public class ConnectedChannelInterceptor extends ChannelInterceptorAdapter {
         }
         //这里的map对应HandshakeInterceptor拦截器的attributes
         Map<String,Object> map = accessor.getSessionAttributes();
-        //String username = ((User)map.get("user")).getUserName();
-        String username = "test";
+        String username = ((User)map.get("user")).getUsername();
         // String accountId = accessor.getSessionAttributes().get(Constants.SKEY_ACCOUNT_ID).toString();
         // 判断客户端的连接状态
         switch (accessor.getCommand()) {

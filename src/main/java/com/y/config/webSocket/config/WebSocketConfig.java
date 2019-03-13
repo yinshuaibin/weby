@@ -52,7 +52,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         //应用程序以/app为前缀，代理目的地以/topic、/user为前缀
         registry.enableSimpleBroker("/topic", "/user"); // 这句话表示在topic和user这两个域上可以向客户端发消息
-        registry.setApplicationDestinationPrefixes("/user"); // 表示给指定用户一对一的主题前缀是/user
+        registry.setApplicationDestinationPrefixes("/yyy"); // 表示给指定用户一对一的主题前缀是/user
         registry.setUserDestinationPrefix("/weby"); //表示客户单向服务器端发送时的主题上面需要加 /weby 作为前缀
     }
 

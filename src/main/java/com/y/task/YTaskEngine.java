@@ -3,9 +3,11 @@ package com.y.task;
 import com.github.pagehelper.Page;
 import com.y.bean.User;
 import com.y.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import sun.rmi.runtime.Log;
 
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.ExecutorService;
@@ -17,6 +19,7 @@ import java.util.concurrent.LinkedBlockingDeque;
  *
  */
 @Component
+@Slf4j
 public class YTaskEngine implements CommandLineRunner {
     private static final BlockingDeque<TaskY> tasks = new LinkedBlockingDeque();
 
@@ -51,7 +54,7 @@ public class YTaskEngine implements CommandLineRunner {
                 }
                 task.execute();
                 Page<User> allUser = userService.getAllUser(1, 100);
-                System.out.println("该条语句仅为数据库查询操作,无意义"+allUser.getTotal()+"------------");
+                log.info("该条语句仅为数据库查询操作,无意义"+allUser.getTotal()+"------------");
                 yTaskCallBack.finshCallBack();
             }
         }

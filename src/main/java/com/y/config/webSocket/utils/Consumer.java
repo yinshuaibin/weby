@@ -50,7 +50,7 @@ public class Consumer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("------------------------ 开启websocket数据读取 --------------------------------------------------");
-        ExecutorService exec = Executors.newFixedThreadPool(3);
+        ExecutorService exec = Executors.newFixedThreadPool(5);
         long l = System.currentTimeMillis();
         for(int a=0; a<3; a++){
             exec.execute(new Runnable() {
@@ -61,7 +61,7 @@ public class Consumer implements CommandLineRunner {
                             WebSocketMessage webSocketMessage = linkedBlockingDeque.take();
                             if (webSocketMessage != null) {
                                 broker(webSocketMessage);
-                                log.debug(webSocketMessage.toString());
+                                log.info(webSocketMessage.toString());
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();

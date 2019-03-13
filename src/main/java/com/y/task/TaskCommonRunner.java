@@ -1,5 +1,6 @@
 package com.y.task;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
  * 为taskCallBack赋值
  */
 @Component
+@Slf4j
 public class TaskCommonRunner implements YTaskCallBack, CommandLineRunner {
 
     @Autowired
@@ -15,7 +17,7 @@ public class TaskCommonRunner implements YTaskCallBack, CommandLineRunner {
 
     @Override
     public void finshCallBack() {
-        System.out.println("此处可以进行callback操作");
+        log.info("此处可以进行callback操作");
     }
 
     @Override

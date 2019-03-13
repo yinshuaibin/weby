@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class YTaskController {
 
@@ -30,7 +32,8 @@ public class YTaskController {
         WebSocketMessage message = new WebSocketMessage();
 
         // 下面3行为测试webSocket
-        message.setDestination("/user/1");
+        message.setUserId("1");
+        message.setDestination("/user");
         message.setData("ceshi");
         Consumer.addMessage(message);
     }
