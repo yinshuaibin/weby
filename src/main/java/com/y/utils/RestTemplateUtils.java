@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 
 
@@ -23,7 +24,7 @@ import java.nio.charset.StandardCharsets;
  */
 @Configuration
 @Order(1)
-public class RestTemplateUtils implements CommandLineRunner {
+public class RestTemplateUtils{
 
     @Autowired
     private RestTemplateBuilder builder;
@@ -52,9 +53,10 @@ public class RestTemplateUtils implements CommandLineRunner {
         return restTemplate.postForEntity(url, entity, String.class).getBody();
     }
 
-    @Override
-    public void run(String... args) throws Exception {
+    @PostConstruct
+    public void init(){
         this.restTemplate = restTemplate();
         this.httpHeaders = httpHeaders();
     }
+
 }
