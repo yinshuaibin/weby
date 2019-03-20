@@ -18,18 +18,7 @@ import java.nio.charset.StandardCharsets;
 @EnableScheduling
 @SpringBootApplication
 @MapperScan("com.y.dao")
-//@ServletComponentScan("com.ferret.filter")
 public class Start extends SpringBootServletInitializer {
-
-    @Autowired
-    private RestTemplateBuilder builder;
-
-    @Bean
-    public RestTemplate restTemplate(){
-        RestTemplate restTemplate = builder.setConnectTimeout(30000).build();
-        restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(StandardCharsets.UTF_8));
-        return restTemplate;
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(Start.class, args);

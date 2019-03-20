@@ -62,7 +62,4 @@ public class TestServiceImpl {
             }
         }
     }
-
-    @Autowired
-    RestTemplate restTemplate;
 }
