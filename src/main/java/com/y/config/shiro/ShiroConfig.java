@@ -3,6 +3,7 @@ package com.y.config.shiro;
 import java.util.LinkedHashMap;
 
 import com.y.utils.Md5Utils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@Slf4j
 public class ShiroConfig  {
 
 //	@Value("${spring.redis.shiro.host}")
@@ -69,7 +71,7 @@ public class ShiroConfig  {
 	// 配置核心安全事务管理器
 	@Bean
 	public SecurityManager securityManager() {
-		System.err.println("--------------shiro已经加载----------------");
+		log.info("--------------shiro已经加载----------------");
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
 		manager.setRealm(MyRealm());
 		return manager;

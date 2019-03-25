@@ -11,4 +11,15 @@ public class User implements Serializable {
     private String password;
     private String userDesc;
     private List<Role> roles;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", userDesc='" + userDesc + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }
