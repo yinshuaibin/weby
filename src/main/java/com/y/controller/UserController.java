@@ -26,6 +26,11 @@ public class UserController extends BaseController {
         return resultMap;
     }
 
+    @RequestMapping("/getUserByUserName")
+    public User getUserByName(String name){
+        return userService.getUserByUserName(name);
+    }
+
     @RequestMapping(value = "/insertUser",method = RequestMethod.POST)
     public int insertUser(@RequestBody User user){
         return  userService.insertUser(user);

@@ -46,7 +46,7 @@ spring:
     # 连接超时时间, spring boot2.0类型为Dutation, 需指明单位
     timeout: 10000ms
   cache:
-    redis:
+    type: redis
 
 #pagehelper分页插件配置
 pagehelper:

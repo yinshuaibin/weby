@@ -27,15 +27,15 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
-    @Cacheable
+    @Cacheable(value = "user")
     @Override
     public Page<User> getAllUser(Integer pageNum, Integer pageSize) {
-        System.out.println(1);
+        log.debug("缓存中无参数为pageNum:{}, pageSize: {}数据, 第一次访问",pageNum, pageSize);
         ValueOperations<String, Object> operations = redisTemplate.opsForValue();
         Object o = operations.get("user" + pageNum + pageSize);
         if( null != o) return (Page<User>)o;
 
-        log.info("redis中无此查询数据, 重新查询并存入redis中");
+        log.debug("redis中无此查询数据, 重新查询并存入redis中");
         // 查询并分页,普通写法
         Page<User> page = PageHelper.startPage(pageNum,pageSize).doSelectPage(userDao::getAllUser);
         redisTemplate.opsForValue().set("user"+pageNum+pageSize, page);
@@ -44,8 +44,10 @@ public class UserServiceImpl implements UserService {
                          .doSelectPage(()->{ userDao.getAllUser(); });
     }
 
+    @Cacheable(value = "user")
     @Override
     public User getUserByUserName(String userName) {
+        log.debug("缓存中无参数为userName:{}数据, 第一次访问",userName);
         return userDao.getUserByUserName(userName);
     }
 
