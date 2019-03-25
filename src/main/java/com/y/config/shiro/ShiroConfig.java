@@ -40,9 +40,9 @@ public class ShiroConfig  {
 		bean.setLoginUrl("/loginSuccess");
 		// 配置访问权限
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-		filterChainDefinitionMap.put("/y/login", "anon");
-		filterChainDefinitionMap.put("/y/**", "authc");
-		filterChainDefinitionMap.put("/**", "anon");
+//		filterChainDefinitionMap.put("/y/login", "anon");
+//		filterChainDefinitionMap.put("/y/**", "authc");
+//		filterChainDefinitionMap.put("/**", "anon");
 		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return bean;
 	}
