@@ -1,9 +1,5 @@
 ﻿﻿common:
   ip: 127.0.0.1
-  index: 1
-
-facelibpath: E:\ftpdata\ClusterData\dycluster
-personArea: 410000
 server:
   port: 8888
 spring:
@@ -27,9 +23,13 @@ spring:
       test-on-borrow: false
       test-on-return: false
       filter.config.enabled: true
-      filters: stat,wall,log4j
+      filters: stat,wall
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALBCiB/HyM/WdejJ+3ZPHLATs+/2QyLxBi+3Qx/ftXmYb3O4U3MyVMkmXjYbd8MKYj7WwXXCVzv0j8qxj7ejvSsCAwEAAQ==
       use-global-data-source-stat: true
+  redis:
+    host: 127.0.0.1
+    port: 9999
+    password: 88888888
 
 #pagehelper分页插件配置
 pagehelper:
@@ -41,7 +41,7 @@ pagehelper:
   params: count=countSql
   #数据库类型,可以不配置,插件默认检测
   helper-dialect: mysql
-  
+
 # 下划线到驼峰形式的映射
 mybatis:
   mapper-locations: classpath:mapper/*.xml
@@ -58,30 +58,6 @@ image:
     uploadDir: E:/ftpdata/upload
     # 替换成url路径的地址前缀
     uploadUrl: http://${common.ip}:${server.port}/upload
-    # 2.tb_historypass表中图片保存的路径前缀
-    historyDir: //${common.ip}/ftpdata
-    # 注意:这是头肩图IIS映射路径,同时也是头肩图图片放置目录
-    historyDir2: E:/ftpdata
-    # 替换成url地址路径的前缀(IP后为IIS映射的头肩图虚拟目录)
-    historyUrl: http://${common.ip}:8080/IMGDIR
-    # 背景图地址替换url路径前缀(IP后为IIS映射的背景图虚拟目录)
-    backGroundUrl: http://${common.ip}:8080/BAKIMGDIR
-    # 4.布控图片保存的路径目录
-    bukongDir: E:/ftpdata/BK
-    # 布控图片替换成url的前缀
-    bukongUrl: http://${common.ip}:${server.port}/bk
-    # 5.聚类目录
-    clusterDir: E:/TmFaceDyData
-    # 聚类url前缀
-    clusterUrl: http://${common.ip}:${server.port}/clusters
-    # 6.报警url前缀  (端口按照分布式图片保存路径修改)
-    alarmUrl: http://${common.ip}:8080/IMGDIR
-    # 报警目录 
-    alarmDir: E:/ftpdata
-    # 静态目录
-    staticDir: E:/ftpdata/searchImg
-    # 静态url前缀
-    staticUrl: http://${common.ip}:${server.port}/searchImg
 
 socket:
 # 服务端通过tcp连接
@@ -101,8 +77,6 @@ socket:
     destination-prefix:
       - /topic
       - /user
-#修改聚集点分析：每次选择一个布控分组，每个布控分组对象不能高于一定值(默认200)
-aggregationAnalyseNum: 200
 # webservice 请求访问路径.
 webservice:
   # 提取特征服务请求地址
