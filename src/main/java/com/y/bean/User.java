@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class User implements Serializable {
+public class User {
     private String userId;
     private String username;
     private String password;

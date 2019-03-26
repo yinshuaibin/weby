@@ -50,7 +50,7 @@ public class RedisConfig extends CachingConfigurerSupport {
                 sb.append(":" + String.valueOf(obj));
             }
             String rsToUse = String.valueOf(sb);
-            log.info("自动生成Redis Key -> [{}]", rsToUse);
+            log.debug("自动生成Redis Key -> [{}]", rsToUse);
             return rsToUse;
         };
     }
