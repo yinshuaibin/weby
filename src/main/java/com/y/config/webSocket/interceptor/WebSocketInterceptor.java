@@ -28,7 +28,6 @@ public class WebSocketInterceptor implements HandshakeInterceptor {
                 //使用username区分WebSocketHandler，以便定向发送消息
                 User user = (User) session.getAttribute("user");
                 if(user == null) {
-                    log.error("用户未登录却尝试连接websocket");
                     return  false;
                 }
                 attributes.put("user",user);

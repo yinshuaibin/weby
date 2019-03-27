@@ -1,7 +1,7 @@
 ﻿﻿common:
   ip: 127.0.0.1
 server:
-  port: 8888
+  port: 8090
 spring:
   datasource:
     druid:

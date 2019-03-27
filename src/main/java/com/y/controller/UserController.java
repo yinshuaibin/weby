@@ -17,6 +17,8 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
+    private int intProgress = 0;
+
     @RequestMapping("/findUser")
     public Map getAllUser(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, Integer pageSize){
         Page<User> allUser = userService.getAllUser(pageNum, pageSize);
@@ -44,5 +46,20 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/deleteUser",method = RequestMethod.DELETE)
     public int deleteUser(int id){
         return  userService.deleteUser(id);
+    }
+
+    @RequestMapping("/getProgress")
+    public String getProgress(){
+       return "success";
+    }
+
+    @RequestMapping("/startProgress")
+    public int getProgressSuccess(){
+        intProgress += 10;
+        if(intProgress == 100 ) {
+            intProgress = 0;
+            return 100;
+        }
+        return intProgress;
     }
 }
