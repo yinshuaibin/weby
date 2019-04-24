@@ -5,8 +5,8 @@ server:
 spring:
   datasource:
     druid:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://${common.ip}:3306/weby?serverTimezone=UTC&characterEncoding=utf8&useSSL=false
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://${common.ip}:3306/weby?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
       username: root
       password: CJ8AzTiVwZdJihNuyeYOeNpzeo1KndhRRlGr2wH5crWe9s4sYFbtGi5iUzva5l4YfBRqhz4zyGYv4miC8rjVww==
       #连接池的配置信息
