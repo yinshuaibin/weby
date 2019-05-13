@@ -23,12 +23,10 @@ public class MyWebAppConfiguration implements WebMvcConfigurer {
                 .maxAge(3600);
     }
 
-	
-	/**
-	 * 删除springboot的历史查询格式的图片本地映射,改为走IIS映射
-	 * 修改人:y
-	 * 修改时间:0718
-	 */
+    /**
+     * 本地文件映射
+     * @param registry
+     */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/upload/**").addResourceLocations("file:F/");
