@@ -23,7 +23,7 @@ public class SingletonExample4 {
 
     private static SingletonExample4 instance = null;
 
-    public static synchronized SingletonExample4 getInstance(){
+    public static SingletonExample4 getInstance(){
         if(instance == null) {
             synchronized (SingletonExample1.class){
                 if (instance == null) instance = new SingletonExample4();

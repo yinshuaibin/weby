@@ -12,7 +12,7 @@ public class SingletonExample6 {
 
     private SingletonExample6(){}
 
-    public static synchronized SingletonExample6 getInstance(){
+    public static SingletonExample6 getInstance(){
         return Singleton.INSTANCE.getInstance();
     }
 
