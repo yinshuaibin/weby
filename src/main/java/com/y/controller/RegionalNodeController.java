@@ -21,6 +21,7 @@ import java.util.Map;
  */
 @RestController
 @Slf4j
+@RequestMapping("/regional")// 继承了BaseController但是自己类上又有@requestMapping时, 继承类中的会被忽略
 public class RegionalNodeController extends BaseController {
 
     @Autowired

@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
+/**
+ * 该controller无法进行aop日志记录, 是因为没有日志记录切点没有配置到这里
+ */
 @RestController
 public class YTaskController {
 

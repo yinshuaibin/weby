@@ -1,15 +1,9 @@
-package com.y.test.thread.immutable;
+package com.y.test.thread.example.immutable;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Maps;
 import com.y.test.thread.annontions.ThreadSafe;
-import sun.security.action.PutAllAction;
-
-import java.util.Collections;
-import java.util.Map;
-import java.util.zip.Inflater;
 
 @ThreadSafe
 /**

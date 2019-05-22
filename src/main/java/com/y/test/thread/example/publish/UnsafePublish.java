@@ -1,4 +1,4 @@
-package com.y.test.thread.publish;
+package com.y.test.thread.example.publish;
 
 import com.y.test.thread.annontions.NotThreadSafe;
 import lombok.extern.slf4j.Slf4j;

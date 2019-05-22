@@ -1,4 +1,4 @@
-package com.y.test.thread.publish;
+package com.y.test.thread.example.publish;
 
 import com.y.test.thread.annontions.NotRecommend;
 import com.y.test.thread.annontions.NotThreadSafe;

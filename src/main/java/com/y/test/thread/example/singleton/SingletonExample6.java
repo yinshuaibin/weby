@@ -1,4 +1,4 @@
-package com.y.test.thread.singleton;
+package com.y.test.thread.example.singleton;
 
 import com.y.test.thread.annontions.Recommend;
 import com.y.test.thread.annontions.ThreadSafe;

@@ -1,7 +1,6 @@
-package com.y.test.thread.immutable;
+package com.y.test.thread.example.immutable;
 
 import com.google.common.collect.Maps;
-import com.y.test.thread.annontions.NotThreadSafe;
 import com.y.test.thread.annontions.ThreadSafe;
 
 import java.util.Collections;

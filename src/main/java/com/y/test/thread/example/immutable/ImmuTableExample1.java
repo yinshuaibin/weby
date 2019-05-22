@@ -1,8 +1,7 @@
-package com.y.test.thread.immutable;
+package com.y.test.thread.example.immutable;
 
 import com.google.common.collect.Maps;
 import com.y.test.thread.annontions.NotThreadSafe;
-import org.omg.CORBA.INTERNAL;
 
 import java.util.Map;
 
