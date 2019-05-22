@@ -25,7 +25,7 @@ public class SingletonExample5 {
     // 单例对象 volatile + 双重检测机制 --> 禁止指令重排(因为此处运用了volatile的写操作)
     private volatile static SingletonExample5 instance = null;
 
-    public static synchronized SingletonExample5 getInstance(){
+    public static SingletonExample5 getInstance(){
         if(instance == null) { // 双重检测机制
             synchronized (SingletonExample1.class){
                 if (instance == null) instance = new SingletonExample5();
