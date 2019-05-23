@@ -5,6 +5,7 @@ import com.y.bean.regionalNode.RegionalNode;
 import com.y.controller.base.BaseController;
 import com.y.service.RegionalNodeService;
 import com.github.pagehelper.Page;
+import com.y.test.thread.example.threadLocal.RequestHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,4 +58,8 @@ public class RegionalNodeController extends BaseController {
         return regionalNodeService.checkoutRegionalNodeId(id ,regionalNodeId);
     };
 
+    @RequestMapping("/getId")
+    public Object getId(){
+        return RequestHolder.getId();
+    }
 }

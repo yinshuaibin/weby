@@ -18,7 +18,6 @@ import java.io.IOException;
  */
 @WebFilter(urlPatterns = {"/regional/*"})
 @Slf4j
-
 public class HttpFilter implements Filter {
 
     @Override

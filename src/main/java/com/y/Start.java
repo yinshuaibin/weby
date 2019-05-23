@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 @SpringBootApplication
 @MapperScan("com.y.dao")
 @ServletComponentScan
-public class Start extends SpringBootServletInitializer {
+public class Start extends SpringBootServletInitializer{
 
     public static void main(String[] args) {
         SpringApplication.run(Start.class, args);
