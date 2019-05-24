@@ -29,14 +29,12 @@ public class RestTemplateUtils{
     @Autowired
     private RestTemplateBuilder builder;
 
-    @Bean
     public RestTemplate restTemplate(){
         RestTemplate restTemplate = builder.build();
         restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(StandardCharsets.UTF_8));
         return restTemplate;
     }
 
-    @Bean
     public HttpHeaders httpHeaders(){
         HttpHeaders headers = new HttpHeaders();
         MediaType type = MediaType.parseMediaType("application/json");
