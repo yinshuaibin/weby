@@ -1,10 +1,7 @@
 package com.y.config.spring;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 
 /**
@@ -32,5 +29,10 @@ public class MyWebAppConfiguration implements WebMvcConfigurer {
 		registry.addResourceHandler("/upload/**").addResourceLocations("file:F/");
 
 	}
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new HttpInterceptor()).addPathPatterns("/**");
+    }
 
 }

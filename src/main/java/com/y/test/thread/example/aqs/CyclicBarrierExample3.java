@@ -7,10 +7,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Slf4j
-public class CyclicBarrierExample1 {
+public class CyclicBarrierExample3 {
 
-    // 阻塞信号量
-    private static CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
+    // 阻塞信号量, 达到阻塞信号量以后, 优先执行此处的Runnable
+    private static CyclicBarrier cyclicBarrier = new CyclicBarrier(5, () ->{
+        log.info("call back is running");
+    });
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
