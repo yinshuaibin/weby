@@ -39,9 +39,7 @@ public class RedisTest {
 
     @Test
     public void testSet(){
-        stringRedisTemplate.opsForValue().set("key", "value1");
-        Page<User> allUser = userService.getAllUser(1, 10);
-        redisTemplate.opsForValue().set("user",allUser.get(0));
+        stringRedisTemplate.opsForValue().set("user", "userTest");
     }
 
     @Test

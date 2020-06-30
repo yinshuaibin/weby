@@ -5,8 +5,7 @@ server:
 spring:
   datasource:
     druid:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://${common.ip}:3306/weby?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
+      url: jdbc:mysql://${common.ip}:3306/facedb?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
       username: root
       password: CJ8AzTiVwZdJihNuyeYOeNpzeo1KndhRRlGr2wH5crWe9s4sYFbtGi5iUzva5l4YfBRqhz4zyGYv4miC8rjVww==
       #连接池的配置信息
@@ -27,10 +26,10 @@ spring:
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALBCiB/HyM/WdejJ+3ZPHLATs+/2QyLxBi+3Qx/ftXmYb3O4U3MyVMkmXjYbd8MKYj7WwXXCVzv0j8qxj7ejvSsCAwEAAQ==
       use-global-data-source-stat: true
   redis:
-    host: 127.0.0.1
-    port: 9999
+    host: 120.27.60.184
+    port: 6379
     # 密码 没有可以不写
-    password: 88888888
+    password: 123456
     lettuce:
       pool:
         # 连接池最大连接数, 默认8 使用负值表示没有限制

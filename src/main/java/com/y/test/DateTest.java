@@ -3,10 +3,14 @@ package com.y.test;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class DateTest {
 
@@ -17,12 +21,13 @@ public class DateTest {
         System.out.println(year);
 
         // 获得1970 1 1 0 0 0 到现在的毫秒数
-        Calendar.getInstance().getTimeInMillis();
+
+        System.out.println(Calendar.getInstance().getTimeInMillis());
         //第一种方式
-        System.currentTimeMillis();
+        System.out.println(System.currentTimeMillis());
         // 二种方式
         // Java 8
-        Clock.systemDefaultZone().millis();
+        System.out.println(Clock.systemDefaultZone().millis());
 
         // 获取当月最后一天
         LocalDate now1 = LocalDate.now();
@@ -42,6 +47,19 @@ public class DateTest {
 
         // 获取前一天这个时刻
         LocalDateTime localDateTime = now.minusDays(1);
-        System.out.println(localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+        LocalDateTime of1 = LocalDateTime.of(LocalDate.now(), LocalTime.of(21, 0));
+        System.out.println(of1.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+
+
+        System.out.println(localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")));
+
+        System.out.println(LocalDate.parse("2018-08-08", DateTimeFormatter.ofPattern("yyyy-MM-dd")).getYear());
+        System.out.println(localDateTime.getMonthValue());
+
+
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 5,
+                10L, TimeUnit.SECONDS,
+                new LinkedBlockingDeque<>(1000));
     }
 }
